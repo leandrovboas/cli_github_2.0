@@ -9,13 +9,13 @@ class Github {
     }
 
     async GetInfoGithub(urlPath){
-        let response;
+        let response = {data: {}, error: ''};
         try{
             const {data} = await this.request.get(URL_BASE + urlPath)
-            response = data
+            response.data = data
         }catch(error){
             const { message } = error
-            response = message
+            response.error = message
             ExibirError(`=====> Message: ${message}`)
         }
         return response

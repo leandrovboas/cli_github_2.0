@@ -17,10 +17,20 @@ const InfoUser = {
 const ListRepos = [
     {name: faker.name.firstName(), clone_url: faker.internet.url()},
     {name: faker.name.firstName(), clone_url: faker.internet.url()}
-]
+    ]
+
+const FakerRequestReject = {
+        get: () => Promise.reject({message:'Not Found'} )
+    }
+
+const FakerRequestResolve = {
+        get: () => Promise.resolve({data: InfoUser})
+    }
 
 module.exports = {
     InfoUser,
     InfoRepo,
-    ListRepos
+    ListRepos,
+    FakerRequestReject,
+    FakerRequestResolve
 }
