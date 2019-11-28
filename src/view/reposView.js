@@ -1,7 +1,7 @@
 const chalk = require('chalk')
 
 async function ExibirListaRepos(repos) {
-    if(repos != null) {
+    if(repos !== null) {
     console.log(`
         ${chalk.yellow('Nome dos Repositórios')}`)
             repos.forEach(element => {
