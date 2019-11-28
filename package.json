@@ -1,0 +1,45 @@
+{
+  "name": "@leandrovboas/cli_github",
+  "version": "1.1.0",
+  "description": "Criação de um cli para interagir com o github via linha de comando",
+  "main": "index.js",
+  "scripts": {
+    "start": "node bin/index.js",
+    "build": "node bin/index.js",
+    "test": "jest",
+    "testWatch": "jest --watchAll"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leandrovboas/cli_github.git"
+  },
+  "keywords": [
+    "Github",
+    "CLI"
+  ],
+  "author": {
+    "name": "Leandro Vilas Boas",
+    "email": "leandrovboas@msn.com",
+    "url": "https://medium.com/@leandrovboas"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/leandrovboas/cli_github/issues"
+  },
+  "homepage": "https://github.com/leandrovboas/cli_github#readme",
+  "bin": {
+    "github": "bin/index.js"
+  },
+  "dependencies": {
+    "axios": "^0.19.0",
+    "chalk": "^2.4.2",
+    "commander": "^3.0.1",
+    "shelljs": "^0.8.3"
+  },
+  "devDependencies": {
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.18.2",
+    "faker": "^4.1.0",
+    "jest": "^24.9.0"
+  }
+}
