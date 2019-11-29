@@ -12,13 +12,6 @@ class User {
         try{
             const { data } = await this.resource.GetInfoGithub(`users/${userName}`)
             return data
-            //  const { name, bio, company, repos_url } = data
-            //  return {
-            //      name,
-            //      bio,
-            //      company,
-            //      repos_url
-            //  }
         } catch (error) {
             ExibirError(`Ocorreu um problema para buscar as informações desse usuário - ${userName}`)
             ExibirError(`Acreditamos que o usuário ${userName} não exista na base do github`)
