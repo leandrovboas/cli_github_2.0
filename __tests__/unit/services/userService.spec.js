@@ -1,13 +1,21 @@
 const Github = require('../../../src/resource/github')
 const UserService = require('../../../src/services/userService')
 const { ExibirError } = require('../../../src/view/errorView')
-const { InfoUser, FakerRequestReject, FakerRequestResolve } = require('../../utils/factories')
+const { InfoUser } = require('../../utils/factories')
 
 jest.mock('../../../src/view/errorView')
 
 describe('Teste do user Services', () => {
     let githubResouerce = new Github()
     let userService = new UserService()
+
+    const FakerRequestReject = {
+        get: () => Promise.reject({message:'Not Found'} )
+    }
+
+    const FakerRequestResolve = {
+        get: () => Promise.resolve({data: InfoUser})
+    }
     
     test('Deve executar uma chamada no GetUserInfo e retornar as info do usuario', async () => {
         githubResouerce.request = FakerRequestResolve

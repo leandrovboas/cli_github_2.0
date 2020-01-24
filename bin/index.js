@@ -3,7 +3,7 @@
 const program = require('commander')
 
 const config = require('../config')
-//const user = require('./cmds/usersCmd')
+const UserCommand = require(config.localUserCommand)
 //const repos = require('./cmds/reposCmd')
 //const clone = require('./cmds/cloneCmd')
 
@@ -14,9 +14,9 @@ program
 .description('Busca informações do usuario na api do github')
 .option('-r, --repos [repos]', 'Retorna uma lista com os repositórios do usuário')
 .option('-j, --json [json]', 'Retorna as informações solicitadas no formato json')
-//.option('-t, --table [table]', 'Combinado com o -r retorna uma tabela com os repositórios do usuário')
 .action((userName, options) => {
-    //user(userName, options.repos, options.json)  
+    const userCMD = new UserCommand()
+    userCMD.GetInfoUser(userName, options.repos, options.json)  
 });
 
 program

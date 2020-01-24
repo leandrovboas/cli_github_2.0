@@ -1,6 +1,6 @@
-const package = require('./package.json');
-const version = package.version
+const packageJson = require('./package.json');
+const version = packageJson.version
 
 module.exports ={
-    version
+    version,
 }
