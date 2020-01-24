@@ -3,7 +3,7 @@
 const program = require('commander')
 
 const config = require('../config')
-const UserCommand = require(config.localUserCommand)
+const UserCommand = require('./cmds/userCommand')
 //const repos = require('./cmds/reposCmd')
 //const clone = require('./cmds/cloneCmd')
 

@@ -20,11 +20,11 @@ class Repos {
         }
     }
 
-    async GetListRepos(repoUrl, qtdReposPublicos){
+    async GetListRepos(userName, qtdReposPublicos){
         let result = []
         try{
             for(var i = 1; qtdReposPublicos > 0; i++){
-                const resultado = await this.resource.GetInfoGithub(`${repoUrl}?page=${i}`)
+                const resultado = await this.resource.GetInfoGithub(`users/${userName}/repos?page=${i}`)
                 result = result.concat( 
                     util.isArray(resultado.data) 
                     ? resultado.data.map((repo) => new DadosRapositoio(repo))
@@ -39,7 +39,7 @@ class Repos {
             }
             return result
         }catch(error){
-            ExibirError(`Ocorreu um problema para buscar os repositórios na url ${repoUrl}`)
+            ExibirError(`Ocorreu um problema para buscar os repositórios para o usuário ${userName}`)
         }
     }
 }
