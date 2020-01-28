@@ -30,8 +30,6 @@ jobs:
       run: |
         npm install
         npm run build --if-presenta
-        npm install faker nock
         npm test
-        npm uninstall faker nock
       env:
         CI: true
