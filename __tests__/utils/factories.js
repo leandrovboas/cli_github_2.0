@@ -1,6 +1,6 @@
 const faker = require('faker')
-const DadosUsuario = require('../../src/module/DadosUsuario')
-const DadosRepos = require('../../src/module/dadosRepos')
+const DadosUsuario = require('../../src/module/DadosUsuario.js')
+const DadosRepos = require('../../src/module/dadosRepos.js')
 
 const InfoRepo = new DadosRepos (
        faker.name.firstName(),
