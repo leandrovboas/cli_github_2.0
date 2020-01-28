@@ -1,5 +1,6 @@
 const Github = require('../resource/github')
-const {ExibirError} = require('../view/errorView')
+const DadosUsuario = require('../module/dadosUsuario')
+const { ExibirError } = require('../view/errorView')
 
 GithubResource = new Github()
 
@@ -11,7 +12,7 @@ class User {
     async GetInfoUsers (userName) {
         try{
             const { data } = await this.resource.GetInfoGithub(`users/${userName}`)
-            return data
+            return new DadosUsuario(data)
         } catch (error) {
             ExibirError(`Ocorreu um problema para buscar as informações desse usuário - ${userName}`)
             ExibirError(`Acreditamos que o usuário ${userName} não exista na base do github`)

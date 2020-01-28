@@ -1,36 +1,25 @@
 const faker = require('faker')
+const DadosUsuario = require('../../src/module/dadosUsuario')
+const DadosRepos = require('../../src/module/dadosRepos')
 
-const InfoUser = {
-        name: faker.name.findName(),
-        bio: faker.lorem.paragraph(),
-        company: faker.company.companyName(),
-        repos_url: faker.internet.url()
-    }
+const InfoRepo = new DadosRepos (
+       faker.name.firstName(),
+       faker.internet.url(),
+       faker.lorem.paragraph(),
+       faker.internet.url()
+)
 
- const InfoRepo = {
-        name: faker.name.firstName(),
-        clone_url: faker.internet.url(),
-        description: faker.lorem.paragraph(),
-        html_url: faker.internet.url()
-    }
+const InfoUser = new DadosUsuario(
+        faker.name.findName(),
+        faker.lorem.paragraph(),
+        faker.company.companyName(),
+        faker.internet.url()
+)
 
-const ListRepos = [
-    {name: faker.name.firstName(), clone_url: faker.internet.url()},
-    {name: faker.name.firstName(), clone_url: faker.internet.url()}
-    ]
-
-const FakerRequestReject = {
-        get: () => Promise.reject({message:'Not Found'} )
-    }
-
-const FakerRequestResolve = {
-        get: () => Promise.resolve({data: InfoUser})
-    }
+const ListRepos = [InfoRepo, InfoRepo, InfoRepo]
 
 module.exports = {
     InfoUser,
     InfoRepo,
-    ListRepos,
-    FakerRequestReject,
-    FakerRequestResolve
+    ListRepos
 }

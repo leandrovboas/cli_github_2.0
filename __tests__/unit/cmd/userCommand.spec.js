@@ -1,11 +1,11 @@
 const UserCommand = require('../../../bin/cmds/userCommand')
-const UserService = require('../../../src/services/userService')
+//const UserService = require('../../../src/services/userService')
 //const { GetRepos } = require('../../src/services/reposService')
 const { ExibirInfoUser } = require('../../../src/view/userView')
-//const { ExibirRepos } = require('../../../src/view/reposView') 
+const { ExibirListaRepos } = require('../../../src/view/reposView') 
 const { ExibirJson } = require('../../../src/view/jsonView')
-const {ExibirError} = require('../../../src/view/errorView')
-const { InfoUser, FakerRequestReject, FakerRequestResolve } = require('../../utils/factories')
+const { ExibirError } = require('../../../src/view/errorView')
+const { InfoUser, ListRepos } = require('../../utils/factories')
 
 jest.mock('../../../src/view/userView')
 jest.mock('../../../src/view/reposView')
@@ -14,8 +14,19 @@ jest.mock('../../../src/view/errorView')
 
 
 describe('Teste do user command', () => {
-    let userCommand = new UserCommand()
+    const userCommand = new UserCommand()
     
+    test('Deve executar uma chamada no GetUserInfo e validar o retorno do metodo', async () => {
+        const userService = {
+            GetInfoUsers: () => InfoUser
+        }
+        userCommand.userService = userService
+
+        const result = await userCommand.GetInfoUser('leandrovboas')
+
+        expect(InfoUser).toMatchObject(result);
+    })
+
     test('Deve executar uma chamada no GetUserInfo e validar uma chamada do metodo ExibirInfoUser', async () => {
         const userService = {
             GetInfoUsers: () => InfoUser
@@ -33,9 +44,26 @@ describe('Teste do user command', () => {
         }
         userCommand.userService = userService
 
-        await userCommand.GetInfoUser('leandrovboas', '', 'true')
+        await userCommand.GetInfoUser('leandrovboas', undefined, 'true')
 
         expect(ExibirJson).toHaveBeenCalled()
+    })
+
+    test('Deve executar uma chamada no GetUserInfo e validar uma chamada do metodo ExibirListaRepos', async () => {
+        const userService = {
+            GetInfoUsers: () => InfoUser
+        }
+
+        const repoService = {
+            GetListRepos: () => ListRepos
+        }
+
+        userCommand.userService = userService
+        userCommand.repoService = repoService
+
+        await userCommand.GetInfoUser('leandrovboas', 'true', undefined)
+
+        expect(ExibirListaRepos).toHaveBeenCalled()
     })
 
     test('Deve executar uma chamada no GetUserInfo e validar uma chamada do metodo ExibirInfoUser', async () => {

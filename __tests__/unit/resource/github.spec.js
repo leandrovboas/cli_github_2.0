@@ -8,6 +8,10 @@ describe('Github resource', () => {
   let githubResouerce = new Github()
   
     test('Realizando um chamada no github resourse', async () => {
+      const FakerRequestResolve = { 
+        get: () => Promise.resolve({data: InfoUser})
+      }
+
         githubResouerce.request = FakerRequestResolve
         const response = await githubResouerce.GetInfoGithub('users/leandrovboas')
 
@@ -15,6 +19,10 @@ describe('Github resource', () => {
     })
 
     test('Realizando um chamada no github resourse retornando erro', async () => {
+      const FakerRequestReject = {
+        get: () => Promise.reject({message:'Not Found'} )
+      }
+
         githubResouerce.request = FakerRequestReject
         const response = await githubResouerce.GetInfoGithub('notFound');
 
@@ -22,6 +30,10 @@ describe('Github resource', () => {
     })
 
     test('Deve verificar se o metodo ExibirError foi chamado', async () => { 
+      const FakerRequestReject = {
+        get: () => Promise.reject({message:'Not Found'} )
+      }
+
       githubResouerce.request = FakerRequestReject
       await githubResouerce.GetInfoGithub('/teste');
 
